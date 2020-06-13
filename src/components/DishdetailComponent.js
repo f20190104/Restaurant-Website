@@ -1,14 +1,9 @@
 import React, {Component} from 'react'
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
+import { Card, CardImg, CardText, CardBody,
     CardTitle } from 'reactstrap';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+
 
 class DishDetail extends Component {
-    constructor(props)
-    {
-        super(props);
-
-    }
     renderComments(comments)
     {   
         if (comments!=null)
@@ -21,7 +16,7 @@ class DishDetail extends Component {
                     const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(date)
                     const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date)
                     //returning the list items
-                        return (<li>
+                        return (<li key={comment.id}>
                             <p>{ comment.comment }</p>
                             <p>--{comment.author}, {mo} {da}, {ye}</p>
                         </li>);
