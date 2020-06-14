@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { Card, CardImg, CardText, CardBody,
-    CardTitle } from 'reactstrap';
+    CardTitle, BreadcrumbItem, Breadcrumb } from 'reactstrap';
+import {Link } from 'react-router-dom';
 
 
 
@@ -23,7 +24,7 @@ import { Card, CardImg, CardText, CardBody,
                     });
 
                 return(
-                    <div>
+                    <div className="col-12 col-md-5 m-1">
                         <h4>Comments</h4>
                         <ul className="list-unstyled">
                             {commentList}
@@ -42,7 +43,7 @@ import { Card, CardImg, CardText, CardBody,
         if (dish!=null)
             {
                 return (
-                    <div className="row">
+                    
                         <div className="col-12 col-md-5 m-1">
                             <Card>
                                 <CardImg top src={dish.image} alt={dish.name}/>
@@ -52,10 +53,6 @@ import { Card, CardImg, CardText, CardBody,
                                 </CardBody>
                             </Card>    
                         </div>
-                        <div className="col-12 col-md-5 m-1">
-                            <RenderComments comments={dish.comments}/>              
-                        </div>
-                    </div>
                     );
             }
         else 
@@ -63,12 +60,25 @@ import { Card, CardImg, CardText, CardBody,
                 return (<div></div>);
             }
     }
-    function DishDetail({dish})
+    function DishDetail({dish,comments})
     {
         return (
-            <div>
-                < RenderDish dish={dish}/> 
-            </div> 
+            <React.Fragment>
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{dish.name}</h3>
+                        <hr /> 
+                    </div>
+                </div>
+                <div className="row">
+                    <RenderDish dish={dish}/> 
+                    <RenderComments comments={comments}/>              
+                </div>
+            </React.Fragment> 
             );
     }
 
