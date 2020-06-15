@@ -123,29 +123,29 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label for="firstname" className="col-md-2">First Name</Label>
                                 <Col md={10}>
-                                    <Input  type="text" name="firstname" id="firstname" placeholder="First Name" value={this.state.firstname} valid= {errors.firstname === ''} invalid = {errors.firstname != ''} onChange={this.handleInput} onBlur={this.handleBlur('firstname')}/>
+                                    <Input  type="text" name="firstname" id="firstname" placeholder="First Name" value={this.state.firstname} valid= {errors.firstname === ''} invalid = {errors.firstname !== ''} onChange={this.handleInput} onBlur={this.handleBlur('firstname')}/>
                                     <FormFeedback>{errors.firstname}</FormFeedback>
                                 </Col>
                                
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="lastname" className="col-md-2">Last Name</Label>
+                                <Label htmlFor="lastname" className="col-md-2">Last Name</Label>
                                 <Col md={10}>
-                                    <Input type="text" name="lastname" id="lastname" placeholder="Last Name" value={this.state.lastname} valid= {errors.lastname === ''} invalid = {errors.lastname != ''} onChange={this.handleInput} onBlur={this.handleBlur('lastname')}/>
+                                    <Input type="text" name="lastname" id="lastname" placeholder="Last Name" value={this.state.lastname} valid= {errors.lastname === ''} invalid = {errors.lastname !== ''} onChange={this.handleInput} onBlur={this.handleBlur('lastname')}/>
                                     <FormFeedback>{errors.lastname}</FormFeedback>                                
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="telnum" className="col-md-2">Tel. Num</Label>
+                                <Label htmlFor="telnum" className="col-md-2">Tel. Num</Label>
                                 <Col md={10}>
-                                    <Input type="tel" name="telnum" id="telnum" placeholder="Tel. Num" value={this.state.telnum} valid= {errors.telnum === ''} invalid = {errors.telnum != ''} onChange={this.handleInput} onBlur={this.handleBlur('telnum')}/>
+                                    <Input type="tel" name="telnum" id="telnum" placeholder="Tel. Num" value={this.state.telnum} valid= {errors.telnum === ''} invalid = {errors.telnum !== ''} onChange={this.handleInput} onBlur={this.handleBlur('telnum')}/>
                                     <FormFeedback>{errors.telnum}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="email" className="col-md-2">Email</Label>
+                                <Label htmlFor="email" className="col-md-2">Email</Label>
                                 <Col md={10}>
-                                    <Input type="email" name="email" id="email" placeholder="Email" value={this.state.email} valid= {errors.email === ''} invalid = {errors.email != ''} onChange={this.handleInput} onBlur={this.handleBlur('email')}/>
+                                    <Input type="email" name="email" id="email" placeholder="Email" value={this.state.email} valid= {errors.email === ''} invalid = {errors.email !== ''} onChange={this.handleInput} onBlur={this.handleBlur('email')}/>
                                     <FormFeedback>{errors.email}</FormFeedback>
                                 </Col>
                             </FormGroup>
@@ -165,7 +165,7 @@ class Contact extends Component {
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="message" className="col-md-2">Your Feedback</Label>
+                                <Label htmlFor="message" className="col-md-2">Your Feedback</Label>
                                 <Col md={10}>
                                     <Input type="textarea" rows="12" name="message" value={this.state.message} onChange={this.handleInput}/>
                                 </Col>
