@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom'
+import {Loading} from './LoadingComponent'
 
-function Menu ({dishes})
+function Menu ({dishes, isLoading, ErrMess})
 {
     const menu = dishes.map((dish) => {
         return (
@@ -17,8 +18,19 @@ function Menu ({dishes})
             </Link>
             
         </div>);
-        } );
+    } );
+
+    if (isLoading) {
         return (
+        <Loading />  
+        );
+    }
+    else if (ErrMess) {
+        return (
+        <h4>{ErrMess}</h4>
+        );
+    }
+    else return (
                 <React.Fragment>
                     <div className="row">
                         <Breadcrumb>

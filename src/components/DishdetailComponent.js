@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, BreadcrumbItem, Breadcrumb, Row, Label, Button, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {Link } from 'react-router-dom';
 import {LocalForm, Control, Errors} from 'react-redux-form'
+import {Loading} from './LoadingComponent'
 
 const minLength = (limit) => (value) => value && value.length >=limit;
 const maxLength = (limit) => (value) => !(value) || value.length <=limit;
@@ -108,30 +109,30 @@ class CommentForm extends Component {
         }
     }
     function RenderDish({dish})
-    {
-        if (dish!=null)
-            {
-                return (
-                    
-                        <div className="col-12 col-md-5 m-1">
-                            <Card>
-                                <CardImg top src={dish.image} alt={dish.name}/>
-                                <CardBody>
-                                    <CardTitle>{dish.name}</CardTitle>
-                                    <CardText>{dish.description}</CardText>
-                                </CardBody>
-                            </Card>    
-                        </div>
-                    );
-            }
-        else 
-            {
-                return (<div></div>);
-            }
+    {  
+    return (
+        
+            <div className="col-12 col-md-5 m-1">
+                <Card>
+                    <CardImg top src={dish.image} alt={dish.name}/>
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>    
+            </div>
+        );
     }
-    function DishDetail({dish,comments, addComment})
+    function DishDetail({dish,comments, addComment, isLoading, ErrMess})
     {
-        return (
+        if (isLoading) {
+            return (<Loading />);
+            }
+        else if (ErrMess) {
+            return (<h4>{ErrMess}</h4>);
+            }   
+        else if (dish!=null) 
+            {return (
             <React.Fragment>
                 <div className="row">
                     <Breadcrumb>
@@ -148,7 +149,8 @@ class CommentForm extends Component {
                     <RenderComments comments={comments} dishId={dish.id} addComment={addComment}/>              
                 </div>
             </React.Fragment> 
-            );
+            );}
+        else return (<div></div>)
     }
 
 export default DishDetail;
