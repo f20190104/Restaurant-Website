@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, BreadcrumbItem, Breadcrum
 import {Link } from 'react-router-dom';
 import {LocalForm, Control, Errors} from 'react-redux-form'
 import {Loading} from './LoadingComponent'
+import {baseUrl} from '../redux/baseURL'
 
 const minLength = (limit) => (value) => value && value.length >=limit;
 const maxLength = (limit) => (value) => !(value) || value.length <=limit;
@@ -114,7 +115,7 @@ class CommentForm extends Component {
         
             <div className="col-12 col-md-5 m-1">
                 <Card>
-                    <CardImg top src={dish.image} alt={dish.name}/>
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
