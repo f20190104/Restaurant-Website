@@ -27,7 +27,7 @@ class CommentForm extends Component {
     handleSubmit(values) {
         alert("Current state is: " + JSON.stringify(values));
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     render(){
         return(
@@ -75,7 +75,7 @@ class CommentForm extends Component {
 }
 
 
-    function RenderComments({comments, dishId, addComment})
+    function RenderComments({comments, dishId, postComment})
     {
         if (comments!=null)
         {
@@ -99,7 +99,7 @@ class CommentForm extends Component {
                         <ul className="list-unstyled">
                             {commentList}
                         </ul>
-                        <CommentForm dishId={dishId} addComment={addComment}/>
+                        <CommentForm dishId={dishId} postComment={postComment}/>
                     </div>
                     
                 );
@@ -124,7 +124,7 @@ class CommentForm extends Component {
             </div>
         );
     }
-    function DishDetail({dish,comments, addComment, isLoading, ErrMess})
+    function DishDetail({dish,comments, postComment, isLoading, ErrMess})
     {
         if (isLoading) {
             return (<Loading />);
@@ -147,7 +147,7 @@ class CommentForm extends Component {
                 </div>
                 <div className="row">
                     <RenderDish dish={dish}/> 
-                    <RenderComments comments={comments} dishId={dish.id} addComment={addComment}/>              
+                    <RenderComments comments={comments} dishId={dish.id} postComment={postComment}/>              
                 </div>
             </React.Fragment> 
             );}

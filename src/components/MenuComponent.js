@@ -32,7 +32,7 @@ function Menu ({dishes, isLoading, ErrMess})
         );
     }
     else return (
-                <React.Fragment>
+                <div>
                     <div className="row">
                         <Breadcrumb>
                             <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
@@ -46,7 +46,7 @@ function Menu ({dishes, isLoading, ErrMess})
                     <div className="row">
                         {menu}
                     </div>
-                </React.Fragment>
+                </div>
                 
         )
 
