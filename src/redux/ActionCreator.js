@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import {baseUrl} from './baseURL';
+import {baseUrl} from '../shared/baseURL';
 export const addComment = (comment) => ({
     type : ActionTypes.ADD_COMMENT, //each action has its own type
     payload : comment

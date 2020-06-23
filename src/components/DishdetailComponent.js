@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, BreadcrumbItem, Breadcrumb, Row, Label, Button, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {Link } from 'react-router-dom';
-import {LocalForm, Control, Errors} from 'react-redux-form'
-import {Loading} from './LoadingComponent'
-import {baseUrl} from '../redux/baseURL'
-
+import {LocalForm, Control, Errors} from 'react-redux-form';
+import {Loading} from './LoadingComponent';
+import {baseUrl} from '../shared/baseURL';
+import {FadeTransform, Fade, Stagger} from 'react-animation-components';
 const minLength = (limit) => (value) => value && value.length >=limit;
 const maxLength = (limit) => (value) => !(value) || value.length <=limit;
 class CommentForm extends Component {
@@ -87,17 +87,24 @@ class CommentForm extends Component {
                     const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(date)
                     const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date)
                     //returning the list items
-                        return (<li key={comment.id}>
-                            <p>{ comment.comment }</p>
-                            <p>--{comment.author}, {mo} {da}, {ye}</p>
-                        </li>);
+                        return (
+                        <Fade in>
+                            <li key={comment.id}>
+                                <p>{ comment.comment }</p>
+                                <p>--{comment.author}, {mo} {da}, {ye}</p>
+                            </li>
+                        </Fade>
+                        );
+                        
                     });
 
                 return(
                     <div className="col-12 col-md-5 m-1">
                         <h4>Comments</h4>
                         <ul className="list-unstyled">
+                            <Stagger in>
                             {commentList}
+                            </Stagger>
                         </ul>
                         <CommentForm dishId={dishId} postComment={postComment}/>
                     </div>
@@ -114,13 +121,15 @@ class CommentForm extends Component {
     return (
         
             <div className="col-12 col-md-5 m-1">
-                <Card>
-                    <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>    
+                <FadeTransform in transformProps= {{exitTransform : 'scale(0.5) translateY(-50%)'}}>
+                    <Card>
+                        <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
+                        <CardBody>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>    
+                </FadeTransform>
             </div>
         );
     }
