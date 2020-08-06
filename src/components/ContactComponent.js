@@ -15,8 +15,7 @@ class Contact extends Component {
     }
   
     handleSubmit(values) {
-        console.log("The submitted form data is:\n"+ JSON.stringify(values));
-        alert("The submitted form data is:\n"+ JSON.stringify(values));
+        this.props.postFeedback(values.firstname,values.lastname,values.telnum,values.email,values.contactType,values.agree,values.message);
         this.props.resetForm();
     } 
     render(){
